@@ -1,11 +1,14 @@
 <template>
   <div class="min-h-screen flex items-center justify-center px-4">
     <div class="w-full max-w-sm space-y-6">
-      <div class="text-center space-y-2">
-        <h1 class="text-3xl font-bold font-orbitron text-white glow-text">
+      <div class="text-center space-y-3">
+        <div class="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#a855f7] to-[#ec4899] shadow-lg shadow-purple-500/25">
+          <component :is="RocketIcon" class="w-8 h-8 text-white" />
+        </div>
+        <h1 class="text-3xl font-bold font-orbitron text-[#2a2a3c] glow-text">
           Mission <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#ec4899]">Control</span>
         </h1>
-        <p class="text-sm text-gray-400 font-poppins">A realtime task board — sign in to launch your mission.</p>
+        <p class="text-sm text-[#6b7085] font-poppins">A realtime task board — sign in to launch your mission.</p>
       </div>
 
       <div class="glass-card p-6 space-y-4">
@@ -14,7 +17,7 @@
             type="button"
             @click="mode = 'signin'"
             class="flex-1 py-2 rounded-lg transition-all"
-            :class="mode === 'signin' ? 'bg-[#a855f7]/20 text-[#a855f7]' : 'text-gray-500 hover:text-gray-300'"
+            :class="mode === 'signin' ? 'bg-[#a855f7]/15 text-[#a855f7]' : 'text-[#8b90a3] hover:text-[#2a2a3c]'"
           >
             Sign In
           </button>
@@ -22,7 +25,7 @@
             type="button"
             @click="mode = 'signup'"
             class="flex-1 py-2 rounded-lg transition-all"
-            :class="mode === 'signup' ? 'bg-[#a855f7]/20 text-[#a855f7]' : 'text-gray-500 hover:text-gray-300'"
+            :class="mode === 'signup' ? 'bg-[#a855f7]/15 text-[#a855f7]' : 'text-[#8b90a3] hover:text-[#2a2a3c]'"
           >
             Sign Up
           </button>
@@ -34,7 +37,7 @@
             type="email"
             placeholder="Email"
             required
-            class="w-full px-4 py-3 bg-[#0b0014]/60 border border-[#a855f7]/30 focus:border-[#a855f7]/70 focus:ring-2 focus:ring-[#a855f7]/20 rounded-xl text-white placeholder-gray-500 outline-none transition-all font-poppins text-sm"
+            class="w-full px-4 py-3 bg-white/50 border border-[#a855f7]/20 focus:border-[#a855f7]/60 focus:ring-2 focus:ring-[#a855f7]/20 rounded-xl text-[#2a2a3c] placeholder-[#9297a8] outline-none transition-all font-poppins text-sm"
           />
           <input
             v-model="password"
@@ -42,7 +45,7 @@
             placeholder="Password"
             required
             minlength="6"
-            class="w-full px-4 py-3 bg-[#0b0014]/60 border border-[#a855f7]/30 focus:border-[#a855f7]/70 focus:ring-2 focus:ring-[#a855f7]/20 rounded-xl text-white placeholder-gray-500 outline-none transition-all font-poppins text-sm"
+            class="w-full px-4 py-3 bg-white/50 border border-[#a855f7]/20 focus:border-[#a855f7]/60 focus:ring-2 focus:ring-[#a855f7]/20 rounded-xl text-[#2a2a3c] placeholder-[#9297a8] outline-none transition-all font-poppins text-sm"
           />
 
           <p v-if="errorMessage" class="text-sm text-[#ec4899] font-poppins">{{ errorMessage }}</p>
@@ -56,7 +59,7 @@
           </button>
         </form>
 
-        <div class="flex items-center gap-3 text-xs text-gray-500 font-poppins">
+        <div class="flex items-center gap-3 text-xs text-[#8b90a3] font-poppins">
           <div class="flex-1 h-px bg-[#a855f7]/20" />
           or
           <div class="flex-1 h-px bg-[#a855f7]/20" />
@@ -66,11 +69,11 @@
           type="button"
           @click="handleGuest"
           :disabled="submitting"
-          class="w-full py-3 bg-transparent border border-[#a855f7]/30 rounded-xl font-semibold text-sm text-[#a855f7] hover:bg-[#a855f7]/10 transition-all disabled:opacity-60"
+          class="w-full py-3 bg-white/40 border border-[#a855f7]/25 rounded-xl font-semibold text-sm text-[#a855f7] hover:bg-[#a855f7]/10 transition-all disabled:opacity-60"
         >
           Continue as Guest
         </button>
-        <p class="text-xs text-gray-500 font-poppins text-center">
+        <p class="text-xs text-[#8b90a3] font-poppins text-center">
           Guest boards live in this browser only — sign up to keep yours across devices.
         </p>
       </div>
@@ -81,6 +84,7 @@
 <script setup>
 import { ref } from 'vue'
 import { signIn, signUp, continueAsGuest } from '@/state/auth'
+import { RocketIcon } from '@/icons'
 
 const mode = ref('signin')
 const email = ref('')
