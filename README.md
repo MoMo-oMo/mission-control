@@ -6,6 +6,8 @@ across every open tab/device for that account.
 
 **[Live demo →](https://momo-omo.github.io/mission-control/)**
 
+![Mission Control screenshot](./preview.png)
+
 ## Features
 
 - **Auth** — email/password, or "Continue as Guest" via Firebase Anonymous

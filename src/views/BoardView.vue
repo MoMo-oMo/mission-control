@@ -1,16 +1,21 @@
 <template>
   <div class="min-h-screen flex flex-col px-4 sm:px-8 py-6">
     <header class="flex items-center justify-between mb-6 flex-wrap gap-3">
-      <h1 class="text-2xl font-bold font-orbitron text-white">
-        Mission <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#ec4899]">Control</span>
-      </h1>
       <div class="flex items-center gap-3">
-        <span class="text-xs text-gray-400 font-poppins">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-br from-[#a855f7] to-[#ec4899] shadow-lg shadow-purple-500/20 flex-shrink-0">
+          <component :is="RocketIcon" class="w-5 h-5 text-white" />
+        </div>
+        <h1 class="text-2xl font-bold font-orbitron text-[#2a2a3c]">
+          Mission <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#ec4899]">Control</span>
+        </h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-xs text-[#6b7085] font-poppins font-medium bg-white/50 border border-black/5 px-3 py-1.5 rounded-full">
           {{ user.isAnonymous ? 'Guest session' : user.email }}
         </span>
         <button
           @click="logOut"
-          class="px-3 py-1.5 text-xs font-semibold text-[#a855f7] border border-[#a855f7]/30 rounded-lg hover:bg-[#a855f7]/10 transition-all font-poppins"
+          class="px-3 py-1.5 text-xs font-semibold text-[#a855f7] border border-[#a855f7]/30 rounded-lg hover:bg-[#a855f7]/10 transition-all font-poppins bg-white/40"
         >
           Sign Out
         </button>
@@ -37,12 +42,13 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { user, logOut } from '@/state/auth'
 import { watchCards, addCard, updateCard, deleteCard, reorderColumn } from '@/services/boardService'
 import BoardColumn from '@/components/BoardColumn.vue'
+import { RocketIcon, OrbitIcon, FlameIcon, FlagIcon } from '@/icons'
 
 const COLUMNS = [
-  { id: 'pre-launch', label: 'Pre-Launch' },
-  { id: 'in-orbit', label: 'In Orbit' },
-  { id: 're-entry', label: 'Re-Entry' },
-  { id: 'touchdown', label: 'Touchdown' },
+  { id: 'pre-launch', label: 'Pre-Launch', icon: RocketIcon, accent: '#f59e0b' },
+  { id: 'in-orbit', label: 'In Orbit', icon: OrbitIcon, accent: '#3b82f6' },
+  { id: 're-entry', label: 'Re-Entry', icon: FlameIcon, accent: '#ec4899' },
+  { id: 'touchdown', label: 'Touchdown', icon: FlagIcon, accent: '#10b981' },
 ]
 
 const cards = ref([])
